@@ -31,7 +31,7 @@
                     <!--Name-->
                     <div class="form-group mb-3">
                         <label for="title" class="mb-6 mr-sm-2">Name</label>
-                        <input type="text" class="form-control mb-2 mr-sm-2" id="name" name="name" placeholder='Name' required>
+                        <input type="text" class="form-control mb-2 mr-sm-2" id="lastname" name="lastname" placeholder='Nachname' required>
                     </div>
                     <!--Vorname-->
                     <div class="form-group mb-3">
@@ -51,17 +51,17 @@
                     <!--Passwort wiederholen-->
                     <div class="form-group mb-3">
                         <label for="title" class="mb-6 mr-sm-2">Passwort wiederholen</label>
-                        <input type="password" class="form-control mb-2 mr-sm-2" id="password" name="password" placeholder='Passwort' required>
+                        <input type="password" class="form-control mb-2 mr-sm-2" id="password2" name="password2" placeholder='Passwort' required>
                     </div>
                     <!--Geburtsdatum-->
                     <div class="form-group mb-3">
                     <label for="date" class="mb-6 mr-sm-2">Geburtsdatum</label>
-                        <input class="form-control" type="date" value="2001-01-01" id="date">
+                        <input class="form-control" type="date" value="2001-01-01" id="date" name="date" required>
                     </div>
                     <!--Geschlecht-->
                     <div class="form-group mb-3">
                         <label for="text" class="mb-6 mr-sm-2">Geschlecht</label>
-                        <select class="form-control" id="exampleSelect1">
+                        <select class="form-control" id="gender" name="gender" required>
                         <option>männlich</option>
                         <option>weiblich</option>
                         <option>divers</option>
@@ -70,7 +70,7 @@
                     <!--Instrument-->
                     <div class="form-group mb-3">
                         <label for="text" class="mb-6 mr-sm-2">Instrument</label>
-                        <select class="form-control" id="exampleSelect1">
+                        <select class="form-control" id="instrument" name="instrument" required>
                         <option>1. Geige</option>
                         <option>2. Geige</option>
                         <option>Bratsche</option>
@@ -88,7 +88,7 @@
                         <div class="input-group-prepend input-group-append">
                                 <span class="input-group-text">@</span>
                             </div>
-                        <input type="text" class="form-control" id="mail1b" name="mail1b" placeholder="mustermann.de">
+                        <input type="text" class="form-control" id="mail1b" name="mail1b" placeholder="mustermann.de" required>
                         </div>
                     </div>
                     <!--E-Mail 2-->
@@ -99,7 +99,7 @@
                         <div class="input-group-prepend input-group-append">
                                 <span class="input-group-text">@</span>
                             </div>
-                        <input type="text" class="form-control" id="mail2b" name="mail2b" placeholder="mustermann.de">
+                        <input type="text" class="form-control" id="mail2b" name="mail2b" placeholder="mustermann.de" required>
                         </div>
                     </div>
                     <p>

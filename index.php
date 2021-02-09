@@ -1,3 +1,12 @@
+<?php
+session_start();
+if (isset($_SESSION["userID"]))
+{
+    header("Location: loggedin.php");
+    die();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,19 +45,20 @@
             </div>
             <div class="container" style="padding:0%; margin-top: 1em;">
                 <h3>Login</h3>
-                    <form action="/action_page.php">
+                    <form action="actions/login.php" method="POST" enctype="multipart/form-data">
                         <div class="form-group">
-                            <input type="email" class="form-control" id="email" placeholder="E-Mail" name="email">
+                            <input type="email" class="form-control" id="mail" placeholder="E-Mail" name="mail" required>
                         </div>
                         <div class="form-group">
-                            <input type="password" class="form-control" id="pwd" placeholder="Passwort" name="pswd">
+                            <input type="password" class="form-control" id="password" placeholder="Passwort" name="password" required>
                         </div>
                         <div class="form-group form-check">
                             <label class="form-check-label">
-                                <input class="form-check-input" type="checkbox" name="remember"> Erinnere mich
+                                <input class="form-check-input" type="checkbox" name="remember" id="remember" disabled> Erinnere mich
                             </label>
                         </div>
-                        <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                        <button type="submit" class="btn btn-primary btn-block">Einloggen</button>
+                        <a href="#" class="btn btn-link btn-block" role="button">Passwort vergessen?</a>
                     </form>
             </div>
         <hr class="d-sm-none">
