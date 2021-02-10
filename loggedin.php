@@ -142,7 +142,7 @@ $totalPlayTime = 0;
                         echo $row['playtime'];
                         echo "</td>";
                         echo "<td>";
-                        echo '<a href="actions/deleteplaytime.php?id=' . $row['ID'] . '" class="btn btn-danger">Löschen</a>';
+                        echo '<a href="actions/deleteplaytime.php?id=' . $row['ID'] . '" class="btn btn-danger btn-block">Löschen</a>';
                         echo "</td>";
                         echo "</tr>";
                     }
