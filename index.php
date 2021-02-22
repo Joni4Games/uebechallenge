@@ -5,6 +5,51 @@ if (isset($_SESSION["userID"]))
     header("Location: loggedin.php");
     die();
 }
+
+include_once "actions/mysql.php";
+
+//MySQL-Init
+$db = mysqli_connect($host, $user, $pass, $db_name) or die("Error.");
+$db->set_charset("utf8");
+if ($db->connect_error) {
+    die("Connection failed: " . $db->connect_error);
+}
+
+//MySQL Select
+$sql = 'SELECT entries.*, participants.* FROM entries INNER JOIN participants ON participants.ID=entries.playerID';
+$result = $db->query($sql);
+
+if ($result->num_rows > 0) {
+  // output data of each row
+  /*while($row = $result->fetch_assoc()) {
+    echo "mail: " . $row["mail"];
+    echo " password: " . $row["password"];
+    echo "<br>";
+  }*/
+  $result_array = mysqli_fetch_array($result);
+
+  //echo "<br>";
+} else {
+  //echo "0 results";
+}
+
+//print_r($result_array);
+//print($result->num_rows);
+
+$playerPlaytime;
+
+foreach ($result as $row) {
+    $playerPlaytime[$row['playerID']] = 0;
+    $totalPlayTime = 0;
+    $totalPlayTime = $totalPlayTime + $row['playtime'];
+    $playerPlaytime[$row['playerID']] = $playerPlaytime[$row['playerID']] + $row['playtime'];
+}
+
+print_r($playerPlaytime);
+
+$memberCount = $result->num_rows;
+
+$db->close();
 ?>
 
 <!DOCTYPE html>
@@ -23,14 +68,14 @@ if (isset($_SESSION["userID"]))
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
-    <div class="jumbotron text-center head">
+    <div class="jumbotron text-center">
         <h1>Übechallenge des Jugendsinfonieorchesters Weimar</h1>
         <p>Herzlich Willkommen!</p> 
     </div>
     <div class="container">
         <h2>Fortschritt</h2>
-        <div class="progress" style="height: 2em;">
-            <div class="progress-bar progress-bar-striped progress-bar-animated" style="width:40%"></div>
+        <div class="progress" style="height: 3em;">
+            <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" style="width:5%; font-size: x-large;">0€</div>
         </div>
     </div>
 
@@ -82,6 +127,51 @@ if (isset($_SESSION["userID"]))
         <div class="fakeimg">Fake Image</div>
         <p>Some text..</p>
         <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+        <!--<table class="table table-hover">
+            <thead> 
+                <tr>
+                    <th>Benutzername</th>
+                    <th>Übezeit gesamt</th>
+                    <th>Übezeit in der letzten Woche</th>
+                </tr>
+            </thead>
+            <tbody>
+                    <tr>
+                        <td>
+                            <?php echo $memberCount; ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <?php echo $memberCount; ?>
+                        </td>
+                    </tr>
+                <?php
+                    foreach ($result as $row) {
+                        $totalPlayTime = $totalPlayTime + $row['playtime'];
+                        echo "<tr>";
+                        echo "<td>";
+                        echo date_format(date_create($row['weekNumber']), "d.m.Y");
+                        echo "</td>";
+                        echo "<td>";
+                        echo $row['playtime'] . " Minuten";
+                        echo "</td>";
+                        echo "<td>";
+                        if ($row['checked']) {
+                            echo "&check;";
+                        } else {
+                            echo "&cross;";
+                        }
+                        //echo $row['checked'];
+                        echo "</td>";
+                        echo "<td>";
+                        echo '<a href="actions/deleteplaytime.php?id=' . $row['ID'] . '" class="btn btn-danger btn-block">Löschen</a>';
+                        echo "</td>";
+                        echo "</tr>";
+                    }
+                ?>
+            </tbody>
+        </table>-->
         </div>
     </div>
     </div>
