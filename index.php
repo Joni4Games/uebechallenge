@@ -21,10 +21,9 @@ if (isset($_SESSION["userID"]))
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    
 </head>
 <body>
-    <div class="jumbotron text-center">
+    <div class="jumbotron text-center head">
         <h1>Übechallenge des Jugendsinfonieorchesters Weimar</h1>
         <p>Herzlich Willkommen!</p> 
     </div>
@@ -37,7 +36,7 @@ if (isset($_SESSION["userID"]))
 
     <div class="container" style="margin-top:30px;">
     <div class="row">
-        <div class="col-sm-4">
+        <div class="col-md-4">
             <div class="container" style="padding:0%;">
                 <h2>Registrieren</h2>
                 <h5></h5>
@@ -47,11 +46,19 @@ if (isset($_SESSION["userID"]))
                 <h3>Login</h3>
                     <form action="actions/login.php" method="POST" enctype="multipart/form-data">
                         <div class="form-group">
-                            <input type="email" class="form-control" id="mail" placeholder="E-Mail" name="mail" required>
+                            <input type="email" class="form-control" id="mail" placeholder="E-Mail" name="mail" <?php if (isset($_GET['mail'])){ echo 'value="'; echo $_GET['mail']; echo '"'; } ?> required>
                         </div>
                         <div class="form-group">
                             <input type="password" class="form-control" id="password" placeholder="Passwort" name="password" required>
                         </div>
+                        <?php
+                        if (isset($_GET["wrong"]))
+                        {
+                            echo "<div class='alert alert-danger'>
+                                <strong>Achtung!</strong> E-Mail und/oder Passwort sind falsch.
+                            </div>";
+                        }
+                        ?>
                         <div class="form-group form-check">
                             <label class="form-check-label">
                                 <input class="form-check-input" type="checkbox" name="remember" id="remember" disabled> Erinnere mich
@@ -63,7 +70,7 @@ if (isset($_SESSION["userID"]))
             </div>
         <hr class="d-sm-none">
         </div>
-        <div class="col-sm-8">
+        <div class="col-md-8">
         <h2>Übebeginn</h2>
         <h5>Offizieller Übebeginn, 01. Januar 2020</h5>
         <div class="fakeimg">Fake Image</div>

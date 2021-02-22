@@ -106,22 +106,22 @@ $totalPlayTime = 0;
 
     <div class="container" style="margin-top:30px;">
     <div class="row">
-        <div class="col-sm-4">
+        <div class="col-md-4">
             <div class="container" style="padding:0%;">
                 <h2>Dein Übeprofil</h2>
                 <p>Hallo, <?php echo $result_array[2]; ?>! Du bist eingeloggt.<br>
                 Deine E-Mail-Addresse lautet <?php echo $result_array[6]; ?>.</p>
                 <a href="actions/logout.php" role="button" class="btn btn-danger btn-block">Ausloggen</a>
             </div>
-        <hr class="d-sm-none">
+        <hr class="d-md-none">
         </div>
-        <div class="col-sm-8">
+        <div class="col-md-8">
         <h2>Deine Übestatistik</h2>
         <h5>Deine Übezeiten im Überblick.</h5>
         <table class="table table-hover">
             <thead> 
                 <tr>
-                    <th>Übewoche</th>
+                    <th>Datum</th>
                     <th>Übezeit</th>
                     <th>Bestätigt</th>
                     <th>Aktion</th>
@@ -133,13 +133,18 @@ $totalPlayTime = 0;
                         $totalPlayTime = $totalPlayTime + $row['playtime'];
                         echo "<tr>";
                         echo "<td>";
-                        echo "Woche " . $row['weekNumber'];
+                        echo date_format(date_create($row['weekNumber']), "d.m.Y");
                         echo "</td>";
                         echo "<td>";
-                        echo $row['playtime'] . " Stunde";
+                        echo $row['playtime'] . " Minuten";
                         echo "</td>";
                         echo "<td>";
-                        echo $row['playtime'];
+                        if ($row['checked']) {
+                            echo "&check;";
+                        } else {
+                            echo "&cross;";
+                        }
+                        //echo $row['checked'];
                         echo "</td>";
                         echo "<td>";
                         echo '<a href="actions/deleteplaytime.php?id=' . $row['ID'] . '" class="btn btn-danger btn-block">Löschen</a>';
@@ -149,20 +154,24 @@ $totalPlayTime = 0;
                 ?>
             </tbody>
         </table>
-        <p>Insgesamt hast du schon <?php echo $totalPlayTime; ?> Stunde/n geübt.</p>
+        <p>Insgesamt hast du schon <?php echo $totalPlayTime; ?> Minute/n geübt.</p>
         <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
         <br>
         <h2>Übezeit eintragen</h2>
         <h5>Hier kannst du deine Übezeit eintragen.</h5>
             <form action="actions/addplaytime.php" method="POST" enctype="multipart/form-data">
                 <div class="form-group row">
-                    <label for="weeknumber" class="col-3 col-form-label">Nummer der Woche</label>
+                    <!--<label for="weeknumber" class="col-3 col-form-label">Nummer der Woche</label>
                     <div class="col-2">
-                        <input class="form-control" type="number" value="10" id="weeknumber" name="weeknumber">
+                        <input class="form-control" type="number" value="1" id="weeknumber" name="weeknumber" min="1">
+                    </div>-->
+                    <label for="weeknumber" class="col-2 col-form-label">Datum</label>
+                    <div class="col-3">
+                        <input class="form-control" type="date" value="2020-03-01" id="weeknumber" id="weeknumber" name="weeknumber">
                     </div>
-                    <label for="hours" class="col-4 col-form-label">Anzahl der geübten Stunden</label>
+                    <label for="hours" class="col-4 col-form-label">Anzahl der geübten Minuten</label>
                     <div class="col-2">
-                        <input class="form-control" type="number" value="1" id="hours" name="hours">
+                        <input class="form-control" type="number" value="15" id="hours" name="hours" min="1">
                     </div>
                 </div>
                 <button type="submit" class="btn btn-primary btn-block">Eintragen</button>

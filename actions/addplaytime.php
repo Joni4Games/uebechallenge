@@ -29,7 +29,7 @@ if (isset($_POST['hours'])) { //hours
   $hours=(int)$_POST['hours'];
 }
 if (isset($_POST['weeknumber'])) { //weeknr
-  $weeknumber=(int)$_POST['weeknumber'];
+  $weeknumber=$_POST['weeknumber'];
 }
 if (isset($_SESSION["userID"])) { //userID
   $userID=(int)$_SESSION["userID"];
@@ -37,7 +37,7 @@ if (isset($_SESSION["userID"])) { //userID
 
 //MySQL Insert
 $stmt = $db->prepare("INSERT INTO entries (playerID, weekNumber, playtime) VALUES (?, ?, ?)");
-$stmt->bind_param("iii", $userID, $weeknumber, $hours);
+$stmt->bind_param("isi", $userID, $weeknumber, $hours);
 
 //echo($hours . " | " . $weeknumber . " | " . $userID);
 

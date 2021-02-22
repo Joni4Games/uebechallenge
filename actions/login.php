@@ -41,6 +41,8 @@ if ($result->num_rows > 0) {
   //echo "<br>";
 } else {
   //echo "0 results";
+  header("Location: ../index.php?wrong=true&mail=" . $mail);
+  die();
 }
 
 if(password_verify($password, $db_password)) {
@@ -52,7 +54,8 @@ if(password_verify($password, $db_password)) {
     header("Location: ../loggedin.php");
     die();
 } else {
-    print("Password did not match.");
+  header("Location: ../index.php?wrong=true&mail=" . $mail);
+  die();
 }
 
 //echo "<br>";
