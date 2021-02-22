@@ -39,13 +39,13 @@ if ($result->num_rows > 0) {
 $playerPlaytime;
 
 foreach ($result as $row) {
-    $playerPlaytime[$row['playerID']] = 0;
+    $playerPlaytime[$row['username']] = 0;
     $totalPlayTime = 0;
     $totalPlayTime = $totalPlayTime + $row['playtime'];
-    $playerPlaytime[$row['playerID']] = $playerPlaytime[$row['playerID']] + $row['playtime'];
+    $playerPlaytime[$row['username']] = $playerPlaytime[$row['username']] + $row['playtime'];
 }
 
-print_r($playerPlaytime);
+echo "<script>console.log(" . json_encode($playerPlaytime) . ");</script>";
 
 $memberCount = $result->num_rows;
 
@@ -127,51 +127,37 @@ $db->close();
         <div class="fakeimg">Fake Image</div>
         <p>Some text..</p>
         <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
-        <!--<table class="table table-hover">
+        <table class="table table-hover">
             <thead> 
                 <tr>
                     <th>Benutzername</th>
                     <th>Übezeit gesamt</th>
-                    <th>Übezeit in der letzten Woche</th>
                 </tr>
             </thead>
             <tbody>
-                    <tr>
-                        <td>
-                            <?php echo $memberCount; ?>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <?php echo $memberCount; ?>
-                        </td>
-                    </tr>
                 <?php
-                    foreach ($result as $row) {
+                    /*foreach ($result as $row) {
+                        $playerPlaytime[$row['username']] = 0;
+                        $totalPlayTime = 0;
                         $totalPlayTime = $totalPlayTime + $row['playtime'];
+                        $playerPlaytime[$row['username']] = $playerPlaytime[$row['username']] + $row['playtime'];
+                    }*/
+
+                    foreach ($playerPlaytime as $username => $minutes) {
+                        
+                        
                         echo "<tr>";
                         echo "<td>";
-                        echo date_format(date_create($row['weekNumber']), "d.m.Y");
+                        echo $username;
                         echo "</td>";
                         echo "<td>";
-                        echo $row['playtime'] . " Minuten";
-                        echo "</td>";
-                        echo "<td>";
-                        if ($row['checked']) {
-                            echo "&check;";
-                        } else {
-                            echo "&cross;";
-                        }
-                        //echo $row['checked'];
-                        echo "</td>";
-                        echo "<td>";
-                        echo '<a href="actions/deleteplaytime.php?id=' . $row['ID'] . '" class="btn btn-danger btn-block">Löschen</a>';
+                        echo $minutes . " Minuten";
                         echo "</td>";
                         echo "</tr>";
                     }
                 ?>
             </tbody>
-        </table>-->
+        </table>
         </div>
     </div>
     </div>
