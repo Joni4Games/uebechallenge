@@ -40,7 +40,7 @@ $playerPlaytime;
 $playerInstruments;
 
 //print_r($result);
-
+$generalPlaytime = 0;
 foreach ($result as $row) {
     //$playerPlaytime[$row['username']] = 0;
     if (isset($totalPlayTime)) {
@@ -52,16 +52,20 @@ foreach ($result as $row) {
     if (isset($playerPlaytime[$row['username']])) {
         $playerPlaytime[$row['username']] = $playerPlaytime[$row['username']] + $row['playtime'];
     } else {
-        $playerPlaytime[$row['username']] = $row['playtime'];
+        $playerPlaytime[$row['username']] = (int)$row['playtime'];
     }
     //print_r($row['instrument']);
     
     //print_r($playerPlaytime);
     //print($totalPlayTime);
     $playerInstruments[$row['username']] = $row['instrument'];
+    $generalPlaytime += $row['playtime'];
 }
+arsort($playerPlaytime);
+
 echo "<script>console.log(" . json_encode($playerPlaytime) . ");</script>";
 echo "<script>console.log(" . json_encode($playerInstruments) . ");</script>";
+echo "<script>console.log(" . json_encode($generalPlaytime) . ");</script>";
 
 //$memberCount = $result->num_rows;
 $memberCount = count($playerInstruments);
@@ -92,8 +96,9 @@ $db->close();
     <div class="container">
         <h2>Fortschritt</h2>
         <div class="progress" style="height: 3em;">
-            <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" style="width:5%; font-size: x-large;">0€</div>
+            <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" style="width:<?php echo $generalPlaytime / 60 * 0.03882; ?>%; font-size: x-large;"></div>
         </div>
+        <h4 style="text-align: center; margin-top: 0.5em;"><?php echo $generalPlaytime; ?> Minuten - <?php echo round($generalPlaytime / 60, 2); ?> € - <?php echo round($generalPlaytime / 60 * 0.03882, 2); ?>%</h4>
     </div>
 
     <div class="container" style="margin-top:30px;">
@@ -118,6 +123,12 @@ $db->close();
                         {
                             echo "<div class='alert alert-danger'>
                                 <strong>Achtung!</strong> E-Mail und/oder Passwort sind falsch.
+                            </div>";
+                        }
+                        if (isset($_GET["registered"]))
+                        {
+                            echo "<div class='alert alert-success'>
+                                <strong>Sehr gut!</strong> Du kannst Dich jetzt anmelden.
                             </div>";
                         }
                         ?>

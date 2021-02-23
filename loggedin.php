@@ -74,6 +74,9 @@ if ($result2->num_rows > 0) {
 $db2->close();
 
 $totalPlayTime = 0;
+foreach ($result2 as $row) {
+    $totalPlayTime = $totalPlayTime + $row['playtime'];
+}
 ?>
 
 <!DOCTYPE html>
@@ -99,9 +102,10 @@ $totalPlayTime = 0;
     </div>
     <div class="container">
         <h2>Dein Fortschritt</h2>
-        <div class="progress" style="height: 2em;">
-            <div class="progress-bar progress-bar-striped progress-bar-animated" style="width:40%"></div>
+        <div class="progress" style="height: 3em;">
+            <div class="progress-bar progress-bar-striped progress-bar-animated" style="width:<?php echo $totalPlayTime / 960 * 100; ?>%"></div>
         </div>
+        <h4 style="text-align: center; margin-top: 0.5em;"><?php echo $totalPlayTime; ?> Minuten - <?php echo round($totalPlayTime / 60, 2); ?> € - <?php echo round($totalPlayTime / 960 * 100, 1);?>%</h4>
     </div>
 
     <div class="container" style="margin-top:30px;">
@@ -130,7 +134,6 @@ $totalPlayTime = 0;
             <tbody>
                 <?php
                     foreach ($result2 as $row) {
-                        $totalPlayTime = $totalPlayTime + $row['playtime'];
                         echo "<tr>";
                         echo "<td>";
                         echo date_format(date_create($row['weekNumber']), "d.m.Y");

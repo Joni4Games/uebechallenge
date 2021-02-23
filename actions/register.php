@@ -66,7 +66,7 @@ $hashed_password2 = password_hash($password2, PASSWORD_BCRYPT);
 //print "<br>" . $hashed_password2;
 
 //MySQL Select
-$sql = 'SELECT * FROM participants WHERE mail = "' . $mail1 . '"';
+$sql = 'SELECT * FROM participants WHERE mail = "' . $mail1 . '" OR username = "' . $nickname . '";';
 $result = $db->query($sql);
 $db->close();
 
@@ -90,7 +90,8 @@ if ($result->num_rows > 0) {
     $stmt->execute() or die("<br>" . mysqli_error($db));
 
     $maxID = $stmt->insert_id;
-    print($maxID);
+    //print($maxID);
+    header("Location: ../index.php?registered=true&mail=" . $mail1);
     $stmt->close();
     $db->close();
 }

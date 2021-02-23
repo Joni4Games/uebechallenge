@@ -56,7 +56,7 @@ if (isset($_GET['wrong'])) {
                     <!--Benutzername-->
                     <div class="form-group mb-3">
                         <label for="title" class="mb-6 mr-sm-2">Benutzername</label>
-                        <input type="text" class="form-control mb-2 mr-sm-2" id="nickname" name="nickname" placeholder='Benutzername' maxlength="20" <?php if ($wrong) {echo 'value="' . $nickname . '"';}?> required>
+                        <input type="text" class="form-control mb-2 mr-sm-2" id="nickname" name="nickname" placeholder='Benutzername' maxlength="20" required>
                     </div>
                     <!--Passwort-->
                     <div class="form-group mb-3">
@@ -114,14 +114,6 @@ if (isset($_GET['wrong'])) {
                             </div>
                         <input type="text" class="form-control" id="mail1b" name="mail1b" placeholder="mustermann.de" maxlength="19" required>
                         </div>
-                        <?php
-                        if (isset($_GET["wrong"]))
-                        {
-                            echo "<div class='alert alert-danger'>
-                                <strong>Achtung!</strong> Diese E-Mail-Adresse wird bereits verwendet.
-                            </div>";
-                        }
-                        ?>
                     </div>
                     <!--E-Mail 2-->
                     <div class="form-group mb-3">
@@ -134,9 +126,17 @@ if (isset($_GET['wrong'])) {
                         <input type="text" class="form-control" id="mail2b" name="mail2b" placeholder="mustermann.de" maxlength="19" <?php if ($wrong) {echo 'value="' . $mail2b . '"';}?> required>
                         </div>
                     </div>
+                    <?php
+                        if (isset($_GET["wrong"]))
+                        {
+                            echo "<div class='alert alert-danger'>
+                                <strong>Achtung!</strong> E-Mail-Adresse oder Benutzername werden bereits verwendet.
+                            </div>";
+                        }
+                        ?>
                     <p>
                         <button type="submit" class="btn btn-primary my-2" value="Submit">Registrieren</button>
-                        <a href="index.php" class="btn btn-secondary my-2" value="Abbrechen">Abbrechen</a>
+                        <a href="index.php" class="btn btn-secondary my-2" value="Abbrechen">Zurück</a>
                     </p>
                 </form>
             </div>
