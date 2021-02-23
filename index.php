@@ -16,7 +16,7 @@ if ($db->connect_error) {
 }
 
 //MySQL Select
-$sql = 'SELECT entries.playerID, entries.playtime, participants.ID, participants.username FROM entries INNER JOIN participants ON participants.ID=entries.playerID';
+$sql = 'SELECT entries.playerID, entries.playtime, participants.ID, participants.username, instruments.name AS instrument FROM entries INNER JOIN participants ON participants.ID=entries.playerID INNER JOIN instruments on participants.instrument=instruments.ID';
 $result = $db->query($sql);
 
 if ($result->num_rows > 0) {
@@ -37,6 +37,8 @@ if ($result->num_rows > 0) {
 //print($result->num_rows);
 
 $playerPlaytime;
+$playerInstruments;
+
 //print_r($result);
 
 foreach ($result as $row) {
@@ -52,12 +54,14 @@ foreach ($result as $row) {
     } else {
         $playerPlaytime[$row['username']] = $row['playtime'];
     }
+    //print_r($row['instrument']);
     
     //print_r($playerPlaytime);
     //print($totalPlayTime);
+    $playerInstruments[$row['username']] = $row['instrument'];
 }
-
 echo "<script>console.log(" . json_encode($playerPlaytime) . ");</script>";
+echo "<script>console.log(" . json_encode($playerInstruments) . ");</script>";
 
 $memberCount = $result->num_rows;
 
@@ -65,7 +69,7 @@ $db->close();
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -144,6 +148,7 @@ $db->close();
                 <tr>
                     <th>Benutzername</th>
                     <th>Übezeit gesamt</th>
+                    <th>Instrument</th>
                 </tr>
             </thead>
             <tbody>
@@ -162,6 +167,9 @@ $db->close();
                         echo "</td>";
                         echo "<td>";
                         echo $minutes . " Minuten";
+                        echo "</td>";
+                        echo "<td>";
+                        echo $playerInstruments["$username"];
                         echo "</td>";
                         echo "</tr>";
                     }

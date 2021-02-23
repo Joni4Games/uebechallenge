@@ -71,13 +71,22 @@
                     <div class="form-group mb-3">
                         <label for="text" class="mb-6 mr-sm-2">Instrument</label>
                         <select class="form-control" id="instrument" name="instrument" required>
-                        <option>1. Geige</option>
-                        <option>2. Geige</option>
-                        <option>Bratsche</option>
-                        <option>Cello</option>
-                        <option>Kontrabass</option>
-                        <option>Horn</option>
-                        <option>...</option>
+                        <option value="1">Violine</option>
+                        <option value="2">Viola</option>
+                        <option value="3">Violoncello</option>
+                        <option value="4">Kontrabass</option>
+                        <option value="5">Flöte</option>
+                        <option value="6">Trompete</option>
+                        <option value="7">Fagott</option>
+                        <option value="8">Klarinette</option>
+                        <option value="9">Oboe</option>
+                        <option value="10">Posaune</option>
+                        <option value="11">Horn</option>
+                        <option value="12">Tuba</option>
+                        <option value="13">Triangel</option>
+                        <option value="14">Trommel</option>
+                        <option value="15">Pauke</option>
+                        <option value="16">Sonstige</option>
                         </select>
                     </div>
                     <!--E-Mail-->
