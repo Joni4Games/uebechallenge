@@ -138,7 +138,7 @@ $db->close();
                             </label>
                         </div>
                         <button type="submit" class="btn btn-primary btn-block">Einloggen</button>
-                        <a href="#" class="btn btn-link btn-block" role="button">Passwort vergessen?</a>
+                        <a href="passwordreset.php" class="btn btn-link btn-block" role="button">Passwort vergessen?</a>
                     </form>
             </div>
         <hr class="d-sm-none">
