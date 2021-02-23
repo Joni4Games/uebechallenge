@@ -63,7 +63,8 @@ foreach ($result as $row) {
 echo "<script>console.log(" . json_encode($playerPlaytime) . ");</script>";
 echo "<script>console.log(" . json_encode($playerInstruments) . ");</script>";
 
-$memberCount = $result->num_rows;
+//$memberCount = $result->num_rows;
+$memberCount = count($playerInstruments);
 
 $db->close();
 ?>
@@ -85,7 +86,7 @@ $db->close();
 </head>
 <body>
     <div class="jumbotron text-center">
-        <h1>Übechallenge des Jugendsinfonieorchesters Weimar</h1>
+        <h1>Übechallenge der Jugendorchesterschule</h1>
         <p>Herzlich Willkommen!</p> 
     </div>
     <div class="container">
@@ -133,7 +134,7 @@ $db->close();
         </div>
         <div class="col-md-8">
         <h2>Übebeginn</h2>
-        <h5>Offizieller Übebeginn, 01. Januar 2020</h5>
+        <h5>Offizieller Übebeginn, 01. März 2021</h5>
         <div class="fakeimg">Fake Image</div>
         <p>Some text..</p>
         <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
@@ -143,6 +144,7 @@ $db->close();
         <div class="fakeimg">Fake Image</div>
         <p>Some text..</p>
         <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+        <p>Teilnehmerzahl: <?php echo $memberCount; ?></p>
         <table class="table table-hover">
             <thead> 
                 <tr>

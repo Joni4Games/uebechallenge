@@ -6,7 +6,7 @@ if (empty($_POST))
 }
 
 include_once "mysql.php";
-print_r($_POST);
+//print_r($_POST);
 
 //MySQL-Init
 $db = mysqli_connect($host, $user, $pass, $db_name) or die("Error.");
@@ -16,9 +16,6 @@ if ($db->connect_error) {
 }
 
 //POST-Variablen
-if (isset($_POST['name'])) { //name
-    $name=mysqli_real_escape_string($db, $_POST['name']);
-}
 if (isset($_POST['forename'])) { //forename
     $forename=mysqli_real_escape_string($db, $_POST['forename']);
 }
@@ -65,20 +62,36 @@ if (strcmp($password, $password2) !== 0) {
 $hashed_password = password_hash($password, PASSWORD_BCRYPT);
 $hashed_password2 = password_hash($password2, PASSWORD_BCRYPT);
 
-print "<br>" . $hashed_password;
-print "<br>" . $hashed_password2;
+//print "<br>" . $hashed_password;
+//print "<br>" . $hashed_password2;
 
-
-
-//MySQL Insert
-$stmt = $db->prepare("INSERT INTO participants (username, forename, lastname, gender, birthdate, mail, password, supermail, instrument) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
-$stmt->bind_param("sssissssi", $nickname, $forename, $lastname, $gender, $date, $mail1, $hashed_password, $mail2, $instrument);
-
-$stmt->execute() or die("<br>" . mysqli_error($db));
-
-$maxID = $stmt->insert_id;
-print($maxID);
-$stmt->close();
+//MySQL Select
+$sql = 'SELECT * FROM participants WHERE mail = "' . $mail1 . '"';
+$result = $db->query($sql);
 $db->close();
 
+if ($result->num_rows > 0) {
+    //Mail bereits vergeben
+    //print "<br>" . "Mail bereits vergeben.";
+    header("Location: ../register.php?wrong=true&forename=" . $forename . "&lastname=" . $lastname . "&nickname=" . $nickname . "&date=" . $date . "&mail2a=" . $mail2a . "&mail2b=" . $mail2b . "&gender=" . $gender . "&instrument=" . $instrument);
+    die();
+} else {
+    //Alles tip top
+    //MySQL Insert
+    //MySQL-Init
+    $db = mysqli_connect($host, $user, $pass, $db_name) or die("Error.");
+    $db->set_charset("utf8");
+    if ($db->connect_error) {
+        die("Connection failed: " . $db->connect_error);
+    }
+    $stmt = $db->prepare("INSERT INTO participants (username, forename, lastname, gender, birthdate, mail, password, supermail, instrument) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("sssissssi", $nickname, $forename, $lastname, $gender, $date, $mail1, $hashed_password, $mail2, $instrument);
+
+    $stmt->execute() or die("<br>" . mysqli_error($db));
+
+    $maxID = $stmt->insert_id;
+    print($maxID);
+    $stmt->close();
+    $db->close();
+}
 ?>
