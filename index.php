@@ -16,7 +16,7 @@ if ($db->connect_error) {
 }
 
 //MySQL Select
-$sql = 'SELECT entries.*, participants.* FROM entries INNER JOIN participants ON participants.ID=entries.playerID';
+$sql = 'SELECT entries.playerID, entries.playtime, participants.ID, participants.username FROM entries INNER JOIN participants ON participants.ID=entries.playerID';
 $result = $db->query($sql);
 
 if ($result->num_rows > 0) {
@@ -37,12 +37,24 @@ if ($result->num_rows > 0) {
 //print($result->num_rows);
 
 $playerPlaytime;
+//print_r($result);
 
 foreach ($result as $row) {
-    $playerPlaytime[$row['username']] = 0;
-    $totalPlayTime = 0;
-    $totalPlayTime = $totalPlayTime + $row['playtime'];
-    $playerPlaytime[$row['username']] = $playerPlaytime[$row['username']] + $row['playtime'];
+    //$playerPlaytime[$row['username']] = 0;
+    if (isset($totalPlayTime)) {
+        $totalPlayTime = $totalPlayTime + $row['playtime'];
+    } else {
+        $totalPlayTime = $row['playtime'];
+    }
+    
+    if (isset($playerPlaytime[$row['username']])) {
+        $playerPlaytime[$row['username']] = $playerPlaytime[$row['username']] + $row['playtime'];
+    } else {
+        $playerPlaytime[$row['username']] = $row['playtime'];
+    }
+    
+    //print_r($playerPlaytime);
+    //print($totalPlayTime);
 }
 
 echo "<script>console.log(" . json_encode($playerPlaytime) . ");</script>";
@@ -144,8 +156,6 @@ $db->close();
                     }*/
 
                     foreach ($playerPlaytime as $username => $minutes) {
-                        
-                        
                         echo "<tr>";
                         echo "<td>";
                         echo $username;
