@@ -60,13 +60,13 @@ if (isset($_GET['wrong'])) {
                     </div>
                     <!--Passwort-->
                     <div class="form-group mb-3">
-                        <label for="title" class="mb-6 mr-sm-2">Passwort</label>
-                        <input type="password" class="form-control mb-2 mr-sm-2" id="password" name="password" placeholder='Passwort' maxlength="20" required>
+                        <label for="title" class="mb-6 mr-sm-2">Passwort (mind. 6 Zeichen)</label>
+                        <input type="password" class="form-control mb-2 mr-sm-2" id="password" name="password" placeholder='Passwort' maxlength="20" minlength="6" required>
                     </div>
                     <!--Passwort wiederholen-->
                     <div class="form-group mb-3">
                         <label for="title" class="mb-6 mr-sm-2">Passwort wiederholen</label>
-                        <input type="password" class="form-control mb-2 mr-sm-2" id="password2" name="password2" placeholder='Passwort' maxlength="20" required>
+                        <input type="password" class="form-control mb-2 mr-sm-2" id="password2" name="password2" placeholder='Passwort' maxlength="20" minlength="6" required>
                     </div>
                     <!--Geburtsdatum-->
                     <div class="form-group mb-3">

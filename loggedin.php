@@ -17,7 +17,8 @@ if ($db->connect_error) {
 }
 
 //MySQL Select
-$sql = 'SELECT * FROM participants WHERE ID=' . $userID;
+$sql = 'SELECT * FROM participants INNER JOIN instruments ON participants.instrument=instruments.ID WHERE participants.ID=' . $userID;
+//print($sql);
 $result = $db->query($sql);
 
 if ($result->num_rows > 0) {
@@ -114,7 +115,10 @@ foreach ($result2 as $row) {
             <div class="container" style="padding:0%;">
                 <h2>Dein Übeprofil</h2>
                 <p>Hallo, <?php echo $result_array[2]; ?>! Du bist eingeloggt.<br>
-                Deine E-Mail-Addresse lautet <?php echo $result_array[6]; ?>.</p>
+                <b>Dein Benutzername:</b> <?php echo $result_array[1]; ?><br>
+                <b>Deine E-Mail:</b> <?php echo $result_array[6]; ?><br>
+                <b>Deine Prüfmail:</b> <?php echo $result_array[8]; ?><br>
+                <b>Dein Instrument:</b> <?php echo $result_array[11]; ?></p>
                 <a href="actions/logout.php" role="button" class="btn btn-danger btn-block">Ausloggen</a>
             </div>
         <hr class="d-md-none">
@@ -157,7 +161,7 @@ foreach ($result2 as $row) {
                 ?>
             </tbody>
         </table>
-        <p>Insgesamt hast du schon <?php echo $totalPlayTime; ?> Minute/n geübt.</p>
+        <p>Als Ziel sind 16 Stunden pro Person gesetzt.</p>
         <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
         <br>
         <h2>Übezeit eintragen</h2>
