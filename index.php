@@ -33,7 +33,6 @@ if ($result->num_rows > 0) {
   //echo "0 results";
 }
 
-//print_r($result_array);
 //print($result->num_rows);
 
 $playerPlaytime;
