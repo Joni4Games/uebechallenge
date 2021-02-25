@@ -28,7 +28,6 @@ $mail = $mail1a . "@" . $mail1b;
 //MySQL Select
 $sql = 'SELECT * FROM participants WHERE mail="' . $mail . '"';
 $result = $db->query($sql);
-$result_array = mysqli_fetch_array($result);
 //Close DB
 $db->close();
 
@@ -36,9 +35,6 @@ if ($result->num_rows > 0) {
   //E-Mail in Datenbank gefunden
   $bytes = random_bytes(5);
   $code = bin2hex($bytes);
-  $ccode = $code;
-  $forename = $result_array['forename'];
-  $participantID = $result_array['ID'];
   //var_dump(bin2hex($bytes));
 
   //MySQL-Init
@@ -48,20 +44,16 @@ if ($result->num_rows > 0) {
       die("Connection failed: " . $db->connect_error);
   }
 
-  $stmt = $db->prepare("INSERT INTO passwordreset (code, mail, participantID) VALUES (?, ?, ?)");
-  $stmt->bind_param("sss", $code, $mail, $participantID);
+  $stmt = $db->prepare("INSERT INTO passwordreset (code, mail) VALUES (?, ?)");
+  $stmt->bind_param("ss", $code, $mail);
   $stmt->execute() or die("<br>" . mysqli_error($db));
 
   $maxID = $stmt->insert_id;
-  $mailaddress = $mail;
-  
 
   $stmt->close();
   $db->close();
 
   //Sende E-Mail mit Code
-
-  include '../mail/sendpasswordmail.php';
   
 
   header("Location: ../passwordreset.php?success=true");
