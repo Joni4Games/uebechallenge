@@ -55,8 +55,6 @@ foreach ($result as $row) {
     }
     //print_r($row['instrument']);
     
-    //print_r($playerPlaytime);
-    //print($totalPlayTime);
     $playerInstruments[$row['username']] = $row['instrument'];
     $generalPlaytime += $row['playtime'];
 }
