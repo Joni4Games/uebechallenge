@@ -30,6 +30,12 @@ if ($result->num_rows > 0) {
   }*/
   $result_array = mysqli_fetch_array($result);
   echo "<script>console.log(" . json_encode($result_array) . ");</script>";
+  /*echo '<script>';
+  echo 'var jason = "' . json_encode($result_array) . ';"
+  jason[7] = "000";
+  jason["password"] = "000";
+  console.log(jason);
+  </script>';*/
   //print_r($result_array);
   $db_password = $result_array[2];
   $user_ID = $result_array[0];
@@ -174,7 +180,7 @@ foreach ($result2 as $row) {
                     </div>-->
                     <label for="weeknumber" class="col-2 col-form-label">Datum</label>
                     <div class="col-3">
-                        <input class="form-control" type="date" value="2020-03-01" id="weeknumber" id="weeknumber" name="weeknumber">
+                        <input class="form-control" type="date" value="2021-03-01" id="weeknumber" id="weeknumber" name="weeknumber">
                     </div>
                     <label for="hours" class="col-4 col-form-label">Anzahl der geübten Minuten</label>
                     <div class="col-2">
