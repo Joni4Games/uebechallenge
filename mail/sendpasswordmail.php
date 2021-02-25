@@ -26,7 +26,7 @@ try {
     $mail->Encoding   = 'base64';
 
     //Recipients
-    $mail->setFrom('***REMOVED***', 'Jugendorchesterschule');
+    $mail->setFrom($sender, 'Jugendorchesterschule');
     $mail->addAddress($mailaddress, $forename);                 //Add a recipient
     //$mail->addAddress('ellen@example.com');                   //Name is optional
     //$mail->addReplyTo('info@example.com', 'Information');
