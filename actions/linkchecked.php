@@ -2,6 +2,7 @@
 include_once "mysql.php";
 //print_r($_POST);
 
+$success = false;
 //GET-Variablen
 if (isset($_GET['code'])) { //id
   $code=$_GET['code'];
@@ -33,15 +34,12 @@ $db->close();
 //print "delID: " . $delID;
 //print "checkID: " . $checkID;
 
-/*if ($result->num_rows > 0) {
-  $result_array = mysqli_fetch_array($result);
-  //echo "<script>console.log(" . json_encode($result_array) . ");</script>";
-  //print_r($result_array);
-  $checkID = $result_array[1];
+if ($result->num_rows <= 0) {
+  //die("Keine Einträge gefunden.");
+  $success = false;
 } else {
-  //echo "0 results";
-  die("Keine Einträge gefunden.");
-}*/
+  $success = true;
+}
 
 //MySQL-Init
 $db = mysqli_connect($host, $user, $pass, $db_name) or die("Error.");
@@ -79,9 +77,6 @@ $stmt->execute() or die("error: <br>" . mysqli_error($db));
 //print_r($result);
 $db->close();
 
-echo "<html><body>";
-echo "<p>Die Übezeit wurde überprüft.<br>Du kannst dieses Fenster nun schließen.</p>";
-echo "</body></html>";
 
 
 if($result == 1) {
@@ -90,3 +85,34 @@ if($result == 1) {
 }
 
 ?>
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Übechallange</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="jumbotron text-center">
+        <h1>Übezeit bestätigen</h1>
+        <p>
+        <?php if ($success == true) {
+          echo "Übezeit bestätigt.";
+        } else {
+          echo "Diese Zeit wurde bereits bestätigt.";
+        }
+        echo "<br>" . $success;
+        ?>
+        </p> 
+    </div>
+</body>
+</html>
