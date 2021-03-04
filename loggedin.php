@@ -150,7 +150,7 @@ foreach ($result2 as $row) {
                             echo "&check;";
                         } else {
                             if(isset($_GET['checked']) && $_GET['checked'] == $row['ID']) {
-                                echo 'warte';
+                                echo '&#128337;';
                             } else {
                                 echo '<a href="actions/setchecked.php?id=' . $row['ID'] . '&time=' . $row['playtime'] . '" class="btn btn-success btn-block">E-Mail</a>';
                             }
@@ -167,33 +167,71 @@ foreach ($result2 as $row) {
                 ?>
             </tbody>
         </table>
-        <p>Als Ziel sind 16 Stunden pro Person gesetzt.</p>
-        <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
-        <br>
-        <h2>Übezeit eintragen</h2>
-        <h5>Hier kannst du deine Übezeit eintragen.</h5>
-            <form action="actions/addplaytime.php" method="POST" enctype="multipart/form-data">
-                <div class="form-group row">
-                    <!--<label for="weeknumber" class="col-3 col-form-label">Nummer der Woche</label>
-                    <div class="col-2">
-                        <input class="form-control" type="number" value="1" id="weeknumber" name="weeknumber" min="1">
-                    </div>-->
-                    <label for="weeknumber" class="col-2 col-form-label">Datum</label>
-                    <div class="col-3">
-                        <input class="form-control" type="date" value="2021-03-01" id="weeknumber" id="weeknumber" name="weeknumber">
-                    </div>
-                    <label for="hours" class="col-4 col-form-label">Anzahl der geübten Minuten</label>
-                    <div class="col-2">
-                        <input class="form-control" type="number" value="15" id="hours" name="hours" min="1">
-                    </div>
+        <div id="accordion">
+            <div class="card">
+                <div class="card-header">
+                <a class="card-link" data-toggle="collapse" href="#collapseOne">
+                    Übezeit eintragen
+                </a>
                 </div>
-                <button type="submit" class="btn btn-primary btn-block">Eintragen</button>
-                <a href="loggedin.php" class="btn btn-link btn-block" role="button">Zurücksetzen</a>
-            </form>
-        <p>Some text..</p>
-        <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+                <div id="collapseOne" class="collapse" data-parent="#accordion">
+                <div class="card-body">
+                <h2>Übezeit eintragen</h2>
+                    <h5>Hier kannst du deine Übezeit eintragen.</h5>
+                        <form action="actions/addplaytime.php" method="POST" enctype="multipart/form-data">
+                            <div class="form-group row">
+                                <!--<label for="weeknumber" class="col-3 col-form-label">Nummer der Woche</label>
+                                <div class="col-2">
+                                    <input class="form-control" type="number" value="1" id="weeknumber" name="weeknumber" min="1">
+                                </div>-->
+                                <label for="weeknumber" class="col col-form-label">Datum</label>
+                                <div class="col-lg">
+                                    <input class="form-control" type="date" value="2021-03-01" id="weeknumber" id="weeknumber" name="weeknumber">
+                                </div>
+                                <label for="hours" class="col col-form-label">geübte Minuten</label>
+                                <div class="col-lg">
+                                    <input class="form-control" type="number" value="15" id="hours" name="hours" min="1">
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block">Eintragen</button>
+                            <!--<a href="loggedin.php" class="btn btn-link btn-block" role="button">Zurücksetzen</a>-->
+                        </form>
+                </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                <a class="collapsed card-link" data-toggle="collapse" href="#collapseTwo">
+                    FAQ
+                </a>
+                </div>
+                <div id="collapseTwo" class="collapse" data-parent="#accordion">
+                <div class="card-body">
+                <h2>FAQ</h2>
+                <p><b>Wie viele Stunden sollte ich üben?</b><br>Als Ziel sind 16 Stunden pro Person gesetzt.</p>
+                <p><b>Wie funktioniert das Bestätigen?</b><br>Jede Übezeit muss bestätigt werden. Klicke dazu einfach auf den "E-Mail"-Button und lass deine Eintragung über das E-Mail-Postfach der Prüfmail bestätigen.</p>
+                <p><b>Kann ich meine Daten ändern lassen?</b><br>Ja! Dein Passwort kannst Du auf der Startseite über die "Passwort vergessen"-Funktion ändern lassen. Für alle anderen Änderungen, schicke bitte eine E-Mail an support@jugendorchesterschule.de</p>
+                </div>
+                </div>
+            </div>
+            <br><br>
+
+            <!--<div class="card">
+                <div class="card-header">
+                <a class="collapsed card-link" data-toggle="collapse" href="#collapseThree">
+                    Collapsible Group Item #3
+                </a>
+                </div>
+                <div id="collapseThree" class="collapse" data-parent="#accordion">
+                <div class="card-body">
+                    Lorem ipsum..
+                </div>
+                </div>
+            </div>-->
+            </div>
         </div>
     </div>
-    </div>
+</div>
 </body>
 </html>

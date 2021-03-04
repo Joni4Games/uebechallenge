@@ -28,7 +28,7 @@ $stmt->close();
 $db->close();
 
 //Zahl der Ergebnisse überprüfen
-if ($result->num_rows <= 0) {
+if ($numrows <= 0) {
   //Keine Einträge in Datenbank gefunden
   $success = false;
 } else {
@@ -98,7 +98,6 @@ if ($result->num_rows <= 0) {
         } else {
           echo "Diese Zeit wurde bereits bestätigt.";
         }
-        echo "<br>" . $success;
         ?>
         </p> 
     </div>
