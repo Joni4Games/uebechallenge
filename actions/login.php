@@ -51,6 +51,7 @@ if(password_verify($password, $db_password)) {
     //print("Password matched.");
     session_start();
     $_SESSION["userID"] = $user_ID;
+    $_SESSION["mail"] = $result_array[1];
     header("Location: ../loggedin.php");
     die();
 } else {

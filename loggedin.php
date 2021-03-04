@@ -149,7 +149,13 @@ foreach ($result2 as $row) {
                         if ($row['checked']) {
                             echo "&check;";
                         } else {
-                            echo "&cross;";
+                            if(isset($_GET['checked']) && $_GET['checked'] == $row['ID']) {
+                                echo 'warte';
+                            } else {
+                                echo '<a href="actions/setchecked.php?id=' . $row['ID'] . '&time=' . $row['playtime'] . '" class="btn btn-success btn-block">E-Mail</a>';
+                            }
+                            //echo "&cross;";
+                            
                         }
                         //echo $row['checked'];
                         echo "</td>";
@@ -174,7 +180,7 @@ foreach ($result2 as $row) {
                     </div>-->
                     <label for="weeknumber" class="col-2 col-form-label">Datum</label>
                     <div class="col-3">
-                        <input class="form-control" type="date" value="2020-03-01" id="weeknumber" id="weeknumber" name="weeknumber">
+                        <input class="form-control" type="date" value="2021-03-01" id="weeknumber" id="weeknumber" name="weeknumber">
                     </div>
                     <label for="hours" class="col-4 col-form-label">Anzahl der geübten Minuten</label>
                     <div class="col-2">

@@ -39,11 +39,11 @@ $sql = 'SELECT participants.ID FROM participants INNER JOIN passwordreset ON pas
 $result = $db->query($sql);
 $result_array = mysqli_fetch_array($result);
 
-$ID = $result_array[0];
 //Close DB
 $db->close();
 
 if ($result->num_rows > 0) {
+  $ID = $result_array[0];
   //E-Mail in Datenbank gefunden
   $bytes = random_bytes(5);
   $code = bin2hex($bytes);
@@ -88,7 +88,7 @@ if ($result->num_rows > 0) {
   die();
 } else {
   //E-Mail kommt in Datenbank nicht vor
-  header("Location: ../index.php?registered=true");
+  header("Location: ../index.php?wrong=true");
   die();
 }
 

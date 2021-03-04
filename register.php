@@ -56,7 +56,7 @@ if (isset($_GET['wrong'])) {
                     <!--Benutzername-->
                     <div class="form-group mb-3">
                         <label for="title" class="mb-6 mr-sm-2">Benutzername</label>
-                        <input type="text" class="form-control mb-2 mr-sm-2" id="nickname" name="nickname" placeholder='Benutzername' maxlength="20" required>
+                        <input type="text" class="form-control mb-2 mr-sm-2" id="nickname" name="nickname" placeholder='Benutzername (wird öffentlich angezeigt)' maxlength="20" required>
                     </div>
                     <!--Passwort-->
                     <div class="form-group mb-3">
