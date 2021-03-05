@@ -154,6 +154,7 @@ foreach ($result2 as $row) {
                 ?>
             </tbody>
         </table>
+        <hr class="d-md">
         <div id="accordion">
             <div class="card">
                 <div class="card-header">
