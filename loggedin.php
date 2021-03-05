@@ -16,29 +16,16 @@ if ($db->connect_error) {
     die("Connection failed: " . $db->connect_error);
 }
 
-//MySQL Select
-$sql = 'SELECT * FROM participants INNER JOIN instruments ON participants.instrument=instruments.ID WHERE participants.ID=' . $userID;
-//print($sql);
-$result = $db->query($sql);
-
-if ($result->num_rows > 0) {
-  // output data of each row
-  /*while($row = $result->fetch_assoc()) {
-    echo "mail: " . $row["mail"];
-    echo " password: " . $row["password"];
-    echo "<br>";
-  }*/
-  $result_array = mysqli_fetch_array($result);
-  echo "<script>console.log(" . json_encode($result_array) . ");</script>";
-  //print_r($result_array);
-  $db_password = $result_array[2];
-  $user_ID = $result_array[0];
-  //echo "results: " . $result->num_rows;
-  //echo "<br>";
-} else {
-  //echo "0 results";
-}
-
+//MySQL Select, Bind, Close
+$stmt = $db->prepare('SELECT * FROM participants INNER JOIN instruments ON participants.instrument=instruments.ID WHERE participants.ID=?');
+$stmt->bind_param("i", $userID);
+$stmt->execute() or die("<br>" . mysqli_error($db));
+$stmt->store_result();
+$numrows = $stmt->num_rows;
+$stmt->bind_result($user_ID, $user_name, $user_forename, $user_lastname, $user_gender, $user_birthdate, $user_mail, $user_password, $user_supermail, $user_instrument, $user_instrumentID, $user_instrumentName, $user_instrumentType);
+$stmt->fetch();
+$stmt->free_result();
+$stmt->close();
 $db->close();
 
 //MySQL-Init 2
@@ -64,8 +51,8 @@ if ($result2->num_rows > 0) {
   $result_array2 = mysqli_fetch_array($result2);
   echo "<script>console.log(" . json_encode($result_array2) . ");</script>";
   //print_r($result_array);
-  $db_password = $result_array[2];
-  $user_ID = $result_array[0];
+  //$db_password = $result_array[2];
+  //$user_ID = $result_array[0];
   //echo "results: " . $result->num_rows;
   //echo "<br>";
 } else {
@@ -114,11 +101,11 @@ foreach ($result2 as $row) {
         <div class="col-md-4">
             <div class="container" style="padding:0%;">
                 <h2>Dein Übeprofil</h2>
-                <p>Hallo, <?php echo $result_array[2]; ?>! Du bist eingeloggt.<br>
-                <b>Dein Benutzername:</b> <?php echo $result_array[1]; ?><br>
-                <b>Deine E-Mail:</b> <?php echo $result_array[6]; ?><br>
-                <b>Deine Prüfmail:</b> <?php echo $result_array[8]; ?><br>
-                <b>Dein Instrument:</b> <?php echo $result_array[11]; ?></p>
+                <p>Hallo, <?php echo $user_forename; ?>! Du bist eingeloggt.<br>
+                <b>Dein Benutzername:</b> <?php echo $user_name; ?><br>
+                <b>Deine E-Mail:</b> <?php echo $user_mail; ?><br>
+                <b>Deine Prüfmail:</b> <?php echo $user_supermail; ?><br>
+                <b>Dein Instrument:</b> <?php echo $user_instrumentName; ?></p>
                 <a href="actions/logout.php" role="button" class="btn btn-danger btn-block">Ausloggen</a>
             </div>
         <hr class="d-md-none">

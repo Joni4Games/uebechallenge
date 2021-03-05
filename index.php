@@ -20,28 +20,14 @@ $sql = 'SELECT entries.playerID, entries.playtime, participants.ID, participants
 $result = $db->query($sql);
 
 if ($result->num_rows > 0) {
-  // output data of each row
-  /*while($row = $result->fetch_assoc()) {
-    echo "mail: " . $row["mail"];
-    echo " password: " . $row["password"];
-    echo "<br>";
-  }*/
   $result_array = mysqli_fetch_array($result);
-
-  //echo "<br>";
-} else {
-  //echo "0 results";
 }
-
-//print($result->num_rows);
 
 $playerPlaytime;
 $playerInstruments;
-
-//print_r($result);
 $generalPlaytime = 0;
+
 foreach ($result as $row) {
-    //$playerPlaytime[$row['username']] = 0;
     if (isset($totalPlayTime)) {
         $totalPlayTime = $totalPlayTime + $row['playtime'];
     } else {
@@ -53,8 +39,6 @@ foreach ($result as $row) {
     } else {
         $playerPlaytime[$row['username']] = (int)$row['playtime'];
     }
-    //print_r($row['instrument']);
-    
     $playerInstruments[$row['username']] = $row['instrument'];
     $generalPlaytime += $row['playtime'];
 }
@@ -64,9 +48,7 @@ echo "<script>console.log(" . json_encode($playerPlaytime) . ");</script>";
 echo "<script>console.log(" . json_encode($playerInstruments) . ");</script>";
 echo "<script>console.log(" . json_encode($generalPlaytime) . ");</script>";
 
-//$memberCount = $result->num_rows;
 $memberCount = count($playerInstruments);
-
 $db->close();
 ?>
 
