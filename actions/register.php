@@ -51,8 +51,9 @@ if (isset($_POST['mail2b'])) { //mail2b
     $mail2b=mysqli_real_escape_string($db, $_POST['mail2b']);
 }
 
-$mail1 = $mail1a . "@" . $mail1b;
-$mail2 = $mail2a . "@" . $mail2b;
+$mail1 = trim($mail1a) . "@" . trim($mail1b);
+$mail2 = trim($mail2a) . "@" . trim($mail2b);
+
 
 if (strcmp($password, $password2) !== 0) {
     die("Passwörter stimmen nicht überein.");
