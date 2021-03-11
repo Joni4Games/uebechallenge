@@ -129,9 +129,16 @@ if (isset($_GET['wrong'])) {
                     <?php
                         if (isset($_GET["wrong"]))
                         {
-                            echo "<div class='alert alert-danger'>
+                            if ($_GET["wrong"] == "passwords") {
+                                echo "<div class='alert alert-danger'>
+                                <strong>Achtung!</strong> Die beiden Passwörter stimmen nicht überein.
+                            </div>";
+                            } else {
+                                echo "<div class='alert alert-danger'>
                                 <strong>Achtung!</strong> E-Mail-Adresse oder Benutzername werden bereits verwendet.
                             </div>";
+                            }
+                            
                         }
                         ?>
                     <p>

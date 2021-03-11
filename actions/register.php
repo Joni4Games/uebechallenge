@@ -56,8 +56,10 @@ $mail2 = trim($mail2a) . "@" . trim($mail2b);
 
 
 if (strcmp($password, $password2) !== 0) {
-    die("Passwörter stimmen nicht überein.");
-    $db->close();
+    //die("Passwörter stimmen nicht überein.");
+    //$db->close();
+    header("Location: ../register.php?wrong=passwords&forename=" . $forename . "&lastname=" . $lastname . "&nickname=" . $nickname . "&date=" . $date . "&mail2a=" . $mail2a . "&mail2b=" . $mail2b . "&gender=" . $gender . "&instrument=" . $instrument);
+    die();
 }
 
 $hashed_password = password_hash($password, PASSWORD_BCRYPT);
