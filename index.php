@@ -124,17 +124,36 @@ $db->close();
         </div>
         <div class="col-md-8">
         <h2>Übebeginn</h2>
-        <h5>Offizieller Übebeginn, 01. März 2021</h5>
-        <div class="fakeimg">Fake Image</div>
-        <p>Some text..</p>
-        <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+        <h5>Offizieller Übebeginn: 01. März 2021</h5>
+        <!--<div class="fakeimg">Fake Image</div>-->
+        <p align="justify">Willkommen bei der Übe-Challenge der Jugendorchesterschule Weimar-Apolda.
+            Unsere Idee in dieser eher komplizierten Zeit für Musiker*innen ist ganz simpel: Da wir momentan noch nicht absehen können, ob im Sommer wieder ein Konzert mit großem Publikum zugelassen wird, wollen wir etwas Neues ausprobieren und planen am 18. Juli ein Konzert, das im Internet via Livestream angeschaut werden kann.
+            Dafür haben wir die Weimarhalle gebucht und werden von SalveTV mit der nötigen Technik unterstützt. 
+            Um das zu finanzieren, veranstalten wir eine Übe-Challenge, zu der wir euch herzlich einladen. Ihr könnt hier allein mit eurem Instrument das benötigte Geld erspielen und bereitet euch gleichzeitig auf den Konzerttag vor. Wie das genau funktioniert, ist unten erklärt. 
+        </p>
         <br>
         <h2>Über das Projekt</h2>
-        <h5>Title description, Sep 2, 2017</h5>
-        <div class="fakeimg">Fake Image</div>
+        <h5>Alle Infos findet ihr hier!</h5>
         <!--<p><a href="https://github.com/Joni4Games/uebechallenge">https://github.com/Joni4Games/uebechallenge</a></p>-->
-        <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
-        <p>Teilnehmerzahl: <?php echo $memberCount; ?></p>
+        <p align="justify">Auf dieser Seite könnt ihr die Übezeiten mit eurem Instrument eintragen und uns so helfen, unser Projekt im Sommer zu finanzieren. Das funktioniert eigentlich ganz einfach: 
+            Um teilzunehmen registriert ihr euch mit einem selbstgewählten Benutzernamen, der nicht eurem Klarnamen entsprechen muss. Dieser Name kann dann von jedem auf dieser Seite eingesehen werden. Mit dem selbst gewählten Passwort könnt ihr euch dann jederzeit wieder auf der Webseite anmelden. Außerdem tragt ihr die E-Mail-Adresse einer dritten Person ein, z.B. die eurer Eltern. Die werden dann informiert, wenn ihr neue Übezeiten eintragt und können diese dann bestätigen.
+        </p>
+        <p align="justify">
+            Für jede Stunde, die wir üben, erhalten wir von unseren Sponsoren 1€. Auf diese Weise erhöht sich der Große Balken, den ihr oben seht, immer weiter. Unser Ziel dabei ist es, auf 2500 € zu kommen, um die Konzertkosten zu decken.
+        </p>
+        <p align="justify">
+            Zur Orientierung müssten also 50 Schüler bis zum 18. Juli je 50 Stunden üben. Das hört sich erstmal viel an, kann aber mit der richtigen Einteilung ohne Probleme geschafft werden. 
+            Die Übe-Challenge startet am 1. März und bis zum 1. Mai könnt ihr euch anmelden. Eure Übezeiten könnt ihr bis zu unserem Konzert, also dem 18. Juli, eintragen.
+            Auf der Seite findet ihr auch eine Übersicht derjenigen Schüler*innen, die aktuell am meisten geübt haben.
+        </p>
+        <p align="justify">
+            Wie viel und wie oft ihr übt, bleibt natürlich euch überlassen. Es wäre schön, wenn ihr uns trotzdem tatkräftig unterstützt. Die Übe-Challenge ist dafür gedacht, dass ihr die Konzertstücke vorbereiten könnt, dabei Spaß habt und wir gleichzeitig das Geld für unser Konzert zusammenbekommen. 
+            Zu Ende der Challenge werden wieder Preise verlost, es lohnt sich also mitzumachen. 
+        </p>
+        <p>
+            Wir freuen uns auf eure kräftige Unterstützung. ;)
+        </p>
+        <p>Teilnehmerzahl: <b><?php echo $memberCount; ?></b></p>
         <table class="table table-hover">
             <thead> 
                 <tr>
