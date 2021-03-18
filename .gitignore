@@ -2,3 +2,5 @@
 .vscode/sftp.json
 actions/mysql.php
 mail/passwords.php
+impressum.php
+datenschutz.php

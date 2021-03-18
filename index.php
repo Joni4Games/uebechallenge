@@ -118,6 +118,8 @@ $db->close();
                         </div>
                         <button type="submit" class="btn btn-primary btn-block">Einloggen</button>
                         <a href="passwordreset.php" class="btn btn-link btn-block" role="button">Passwort vergessen?</a>
+                        <a href="impressum.php" class="btn btn-link btn-block" role="button">Impressum</a>
+                        <a href="datenschutz.php" class="btn btn-link btn-block" role="button">Datenschutz</a>
                     </form>
             </div>
         <hr class="d-sm-none">
