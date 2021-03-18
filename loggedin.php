@@ -22,7 +22,7 @@ $stmt->bind_param("i", $userID);
 $stmt->execute() or die("<br>" . mysqli_error($db));
 $stmt->store_result();
 $numrows = $stmt->num_rows;
-$stmt->bind_result($user_ID, $user_name, $user_forename, $user_lastname, $user_gender, $user_birthdate, $user_mail, $user_password, $user_supermail, $user_instrument, $user_instrumentID, $user_instrumentName, $user_instrumentType);
+$stmt->bind_result($user_ID, $user_name, $user_forename, $user_lastname, $user_gender, $user_birthdate, $user_mail, $user_password, $user_supermail, $user_instrument, $user_registerDate, $user_instrumentID, $user_instrumentName, $user_instrumentType);
 $stmt->fetch();
 $stmt->free_result();
 $stmt->close();
