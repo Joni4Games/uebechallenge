@@ -16,7 +16,7 @@ if ($db->connect_error) {
 }
 
 //MySQL Select
-$sql = 'SELECT entries.playerID, entries.playtime, participants.ID, participants.username, instruments.name AS instrument FROM entries INNER JOIN participants ON participants.ID=entries.playerID INNER JOIN instruments on participants.instrument=instruments.ID';
+$sql = 'SELECT entries.playerID, entries.playtime, participants.ID, participants.username, instruments.type AS instrument FROM entries INNER JOIN participants ON participants.ID=entries.playerID INNER JOIN instruments on participants.instrument=instruments.ID';
 $result = $db->query($sql);
 
 if ($result->num_rows > 0) {
@@ -182,7 +182,24 @@ $db->close();
                         echo $minutes . " Minuten";
                         echo "</td>";
                         echo "<td>";
-                        echo $playerInstruments["$username"];
+                        switch ($playerInstruments["$username"]) {
+                            case '0':
+                                echo "Streicher";
+                                break;
+                            case '1':
+                                echo "Blechbläser";
+                                break;
+                            case '2':
+                                echo "Holzbläser";
+                                break;
+                            case '3':
+                                echo "Akustik";
+                                break;
+                            default:
+                                echo "Andere";
+                                break;
+                        }
+                        //echo $playerInstruments["$username"];
                         echo "</td>";
                         echo "</tr>";
                     }
