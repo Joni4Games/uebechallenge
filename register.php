@@ -106,13 +106,13 @@ if (isset($_GET['wrong'])) {
                     </div>
                     <!--E-Mail-->
                     <div class="form-group mb-3">
-                        <label for="title" class="mb-6 mr-sm-2">E-Mail</label>
+                        <label for="title" class="mb-6 mr-sm-2">E-Mail (Wenn Du keine eigene E-Mail-Adresse hast, frag bitte deine Eltern!)</label>
                         <div class="input-group mb-3">
                         <input type="text" class="form-control" id="mail1a" name="mail1a" placeholder="max" maxlength="50" required>
                         <div class="input-group-prepend input-group-append">
                                 <span class="input-group-text">@</span>
                             </div>
-                        <input type="text" class="form-control" id="mail1b" name="mail1b" placeholder="mustermann.de" maxlength="19" required>
+                        <input type="text" class="form-control" id="mail1b" name="mail1b" placeholder="mustermann.de" maxlength="30" required>
                         </div>
                     </div>
                     <!--E-Mail 2-->
@@ -123,7 +123,7 @@ if (isset($_GET['wrong'])) {
                         <div class="input-group-prepend input-group-append">
                                 <span class="input-group-text">@</span>
                             </div>
-                        <input type="text" class="form-control" id="mail2b" name="mail2b" placeholder="mustermann.de" maxlength="19" <?php if ($wrong) {echo 'value="' . $mail2b . '"';}?> required>
+                        <input type="text" class="form-control" id="mail2b" name="mail2b" placeholder="mustermann.de" maxlength="30" <?php if ($wrong) {echo 'value="' . $mail2b . '"';}?> required>
                         </div>
                     </div>
                     <?php

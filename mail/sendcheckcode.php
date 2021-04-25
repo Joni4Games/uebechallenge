@@ -38,7 +38,7 @@ try {
     $mail->Subject = 'Übezeit überprüfen';
     $mail->Body    = '<p>Bitte bestätige die Übezeit über ' . $time . ' Minuten. Klicke dafür auf diesen Link:</p><br><a href="https://jugendorchesterschule.de/actions/linkchecked.php?code=' . $code . '">Übezeit bestätigen</a>';
     //$mail->Body    = '<p>Du hast diese E-Mail bekommen, weil Du dein Passwort zurücksetzen möchtest.<br>Bitte klicke dafür auf diesen Link:</p><a href="https://jugendorchesterschule.de/passwordform.php?code=' . $ccode . '">Passwort zurücksetzen</a>';
-    //$mail->AltBody = 'Du hast diese E-Mail bekommen, weil Du dein Passwort zurücksetzen möchtest. Bitte nutze dafür auf diesen Link: https://jugendorchesterschule.de/passwordform.php?code=' . $ccode;
+    $mail->AltBody = 'Bitte bestätigt die Übezeit. Nutze dafür diesen Link: https://jugendorchesterschule.de/passwordform.php?code=' . $code;
 
     $mail->send();
     //echo 'Message has been sent';

@@ -50,6 +50,9 @@ echo "<script>console.log(" . json_encode($generalPlaytime) . ");</script>";
 
 $memberCount = count($playerInstruments);
 $db->close();
+
+$playtimes = array();
+$playtimes = [0, 0, 0, 0, 0]
 ?>
 
 <!DOCTYPE html>
@@ -66,6 +69,8 @@ $db->close();
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <div class="jumbotron text-center">
@@ -185,18 +190,23 @@ $db->close();
                         switch ($playerInstruments["$username"]) {
                             case '0':
                                 echo "Streicher";
+                                $playtimes[0] += (int)$minutes;
                                 break;
                             case '1':
                                 echo "Blechbläser";
+                                $playtimes[1] += (int)$minutes;
                                 break;
                             case '2':
                                 echo "Holzbläser";
+                                $playtimes[2] += (int)$minutes;
                                 break;
                             case '3':
                                 echo "Akustik";
+                                $playtimes[3] += (int)$minutes;
                                 break;
                             default:
                                 echo "Andere";
+                                $playtimes[4] += (int)$minutes;
                                 break;
                         }
                         //echo $playerInstruments["$username"];
@@ -206,6 +216,83 @@ $db->close();
                 ?>
             </tbody>
         </table>
+
+        <div id="accordion">
+            <div class="card">
+                <div class="card-header">
+                <a class="card-link" data-toggle="collapse" href="#collapseOne">
+                    Statistik
+                </a>
+                </div>
+                <div id="collapseOne" class="collapse" data-parent="#accordion">
+                <div class="card-body">
+                <h2>Kuchendiagramm</h2>
+                    <!--<h5>Hier kannst du deine Übezeit eintragen.</h5>-->
+                    <div>
+                        <canvas id="myChart"></canvas>
+                    </div>
+                    <script>
+                    //Setup
+                        const DATA_COUNT = 5;
+                        const NUMBER_CFG = {count: DATA_COUNT, min: 0, max: 100};
+
+                        const data = {
+                        labels: ['Streicher', 'Blechbläser', 'Holzbläser', 'Akustik', 'Andere'],
+                        datasets: [
+                            {
+                            label: 'Dataset 1',
+                            data: <?php echo json_encode($playtimes); ?>,
+                            backgroundColor: ["red", "cyan", "blue", "orange", "lime"],
+                            }
+                        ]
+                        };
+                    //Config
+                        const config = {
+                        type: 'pie',
+                        data: data,
+                        options: {
+                            responsive: true,
+                            plugins: {
+                            legend: {
+                                position: 'top',
+                            },
+                            title: {
+                                display: true,
+                                text: 'Übezeiten gesamt, in Stunden'
+                            }
+                            }
+                        },
+                        };
+                    // === include 'setup' then 'config' above ===
+                    
+                    var myChart = new Chart(
+                        document.getElementById('myChart'),
+                        config
+                    );
+                    </script>
+
+                </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                <a class="collapsed card-link" data-toggle="collapse" href="#collapseTwo">
+                    FAQ
+                </a>
+                </div>
+                <div id="collapseTwo" class="collapse" data-parent="#accordion">
+                <div class="card-body">
+                <h2>FAQ</h2>
+                <p><b>Wie viele Stunden sollte ich üben?</b><br>Als Ziel sind 16 Stunden pro Person gesetzt.</p>
+                <p><b>Wie funktioniert das Bestätigen?</b><br>Jede Übezeit muss bestätigt werden. Klicke dazu einfach auf den "E-Mail"-Button und lass deine Eintragung über das E-Mail-Postfach der Prüfmail bestätigen.</p>
+                <p><b>Kann ich meine Daten ändern lassen?</b><br>Ja! Dein Passwort kannst Du auf der Startseite über die "Passwort vergessen"-Funktion ändern lassen. Für alle anderen Änderungen, schicke bitte eine E-Mail an support@jugendorchesterschule.de</p>
+                </div>
+                </div>
+            </div>
+            <br><br>
+
+            </div>
         </div>
     </div>
     </div>

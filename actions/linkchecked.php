@@ -2,9 +2,11 @@
 include_once "mysql.php";
 $success = false;
 
+$forbidden = array("[", "]");
 //GET-Variablen in Variable gießen
 if (isset($_GET['code'])) { //id
-  $code=$_GET['code'];
+  $code1=$_GET['code'];
+  $code=str_replace($forbidden, "", $code1);
 }
 
 //MySQL-Init
