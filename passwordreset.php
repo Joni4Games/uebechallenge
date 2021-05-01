@@ -36,7 +36,7 @@
                         <div class="input-group-prepend input-group-append">
                                 <span class="input-group-text">@</span>
                             </div>
-                        <input type="text" class="form-control" id="mail1b" name="mail1b" placeholder="mustermann.de" maxlength="19" required>
+                        <input type="text" class="form-control" id="mail1b" name="mail1b" placeholder="mustermann.de" maxlength="30" required>
                         </div>
                     </div>
                     <?php
